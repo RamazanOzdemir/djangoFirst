@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends 'base_layout.html' %}
+{% load static from staticfiles %}
+{% block title %}
     <title>Articles</title>
-</head>
-<body>
+{% endblock %}
+{% block content %}
     <h1>Articles List</h1>
-</body>
-</html>
+    <img alt='bjk' src="{% static 'bjk.png' %}">
+    <div class="articles">
+       {% for article in articles %}
+        <div class="article">
+            <h2><a href="{% url 'articles:detail' slug=article.slug %}"> {{article.title}} </a></h2>
+            <p> {{article.body}} </p>
+            <p> {{article.date}} </p>
+        </div>
+       {% endfor %} 
+    </div>
+
+{% endblock %}
